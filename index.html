@@ -1,51 +1,148 @@
-<!doctype html>
+<!--
+
+// Website: https://ChrishSec.com
+// GitHub: https://github.com/ChrishSec
+// Twitter: https://twitter.com/ChrishSec
+
+-->
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <title><Blank></title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Courier New', Courier, monospace;
+      background: black;
+      color: green;
+    }
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    canvas {
+      display: block;
+    }
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1;
+    }
 
-    <title><Blank></title>
-    <link rel="icon" type="image/png" href="favicon.png" />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Say hi :)
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="https://twitter.com/ChrishSec">Twitter</a></li>
-            <li><a class="dropdown-item" href="https://github.com/ChrishSec">Github</a></li>
-            <li><a class="dropdown-item" href="https://t.me/ChrishSec">Telegram</a></li>
-          </ul>
-        </li>
-      </ul>
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 2;
+      background-color: black !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: green !important;
+    }
+
+    .dropdown-menu {
+      background-color: black !important;
+    }
+
+    .dropdown-menu a {
+      color: green !important;
+    }
+
+    .dropdown-menu a:hover,
+    .dropdown-menu a:active,
+    .dropdown-menu a:focus {
+      background-color: black !important;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Say hi :)
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="https://twitter.com/ChrishSec">Twitter</a></li>
+              <li><a class="dropdown-item" href="https://github.com/ChrishSec">Github</a></li>
+              <li><a class="dropdown-item" href="https://t.me/ChrishSec">Telegram</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <canvas id="matrix"></canvas>
+
+  <div class="container">
+    <center>
+      <br>
+      <img src="logo.png" class="img-fluid" />
+      <br>
+      <br>
+      <p>contact@chrishsec.com</p>
+    </center>
   </div>
-</nav>
 
-     <div class="container">
-       <center>
-         <br>
-       <img src="logo.png" />
-         <br>
-       <p>contact@chrishsec.com</p>  
-       </center>
-     </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-  </body>
+      const columns = Math.floor(canvas.width / 20);
+      const drops = [];
+
+      for (let i = 0; i < columns; i++) {
+        drops[i] = 1;
+      }
+
+      function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#00FF00';
+        ctx.font = '15px Courier New';
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = Math.floor(Math.random() * 2);
+          ctx.fillText(text, i * 20, drops[i] * 20);
+
+          drops[i]++;
+
+          if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+        }
+      }
+
+      function update() {
+        draw();
+        requestAnimationFrame(update);
+      }
+
+      update();
+    });
+  </script>
+</body>
 </html>
